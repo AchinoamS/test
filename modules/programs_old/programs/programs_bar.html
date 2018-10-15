@@ -1,0 +1,16 @@
+﻿
+<div>
+    <button type="button" class="btn btn-default" ng-click="addEditProgram()"><i class="fa fa-fw fa-plus"></i>{{"New Program" | translate}}</button>
+    <button type="button" class="btn btn-default" ng-click="addEditProgram(UIARGS.selectedRow)" ng-disabled="!UIARGS.selectedRow"><i class="fa fa-fw fa-pencil"></i>{{"Edit" | translate}}</button>
+    <!--<button type="button" class="btn btn-default" ng-click="deleteProgram(UIARGS.selectedRow)" ng-disabled="!UIARGS.selectedRow"><i class="fa fa-fw fa-trash"></i>{{"Delete" | translate}}</button>-->
+
+    <div class="pull-right flip">
+        <div class="input-group">
+            <input type="text" class="form-control" id="txtSearchString" ng-model="UIARGS.query" placeholder="{{'Search by name description' | translate}}" ng-keyup="searchGrid()">
+            <span class="input-group-addon" ng-click="UIARGS.query = null; searchGrid();">
+                <i class="fa fa-fw {{UIARGS.query && UIARGS.query.length ? 'fa-times' : 'fa-search'}}"></i>
+            </span>
+        </div>
+    </div>
+</div>
+

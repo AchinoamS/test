@@ -1,0 +1,38 @@
+
+
+
+<div class="panel-max-container">
+    <!-- main -->
+    <div class="_maxed"></div>
+    <div class="_content">
+        <!-- main header -->
+        <div class="bg-light lter b-b wrapper">
+            <div class="row row-sm">
+                <div class="col-sm-12">
+                    <h1 class="font-thin h3 text-black text-u-c text-ellipsis">
+                        <i class="fa fa-gears icon icon text-muted"></i>
+                        {{ ui.moduleName }}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main header -->
+    <!--grid-->
+    <div class="wrapper-sm">
+        <div class="grid-wrapper full-height b-b animated fadeInRightBig" style="overflow: hidden !important;" height-container>
+            <kendo-grid id="reportGrid" options="gridConfig" k-data-source="reportDS" k-on-change="onRowSelect(data)" class="kendo-rgrid" style="height:100%" ng-if="!hideGrid && !ui.detailTemplate"></kendo-grid>
+            <kendo-grid id="reportGrid" options="gridConfig" k-data-source="reportDS" k-on-change="onRowSelect(data)" class="kendo-rgrid" style="height:100%" ng-if="ui.detailTemplate">
+                <div k-detail-template>
+                    <div ng-include="ui.detailTemplate"></div>
+                </div>
+            </kendo-grid>
+        </div>
+    </div>
+    <!--end grid-->
+
+</div>
+
+
+
+

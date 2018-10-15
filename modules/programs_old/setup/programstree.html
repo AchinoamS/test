@@ -1,0 +1,147 @@
+﻿
+<style>
+
+    .hbox-hier{
+        margin: 0 auto;
+        max-width:1000px;
+    }
+    .hbox-hier .vbox{
+        background:#fff;
+    }
+
+    .hbox-hier .vbox .vbox-header-col{
+        font-size:16px;
+        font-weight:600;
+    }
+
+    .hbox-hier .vbox .cell-inner{
+        padding:0;
+        left:0 !important;
+        right:0 !important;
+    }
+
+    .hbox-hier .vbox .cell-inner .ptree-member {
+        padding: 12px;
+        display: block;
+        cursor: pointer;
+    }
+    .hbox-hier .vbox .cell-inner .ptree-member.active {
+        background-color: #dff0d8;
+        color: #3c763d;
+    }
+
+</style>
+
+<div class="container-report" ng-class="UIARGS.baseClass" ng-show="!UIARGS.loading">
+    <div class="inline-module boxed" ng-class="{'boxed': UIARGS.boxed}">
+        <div class="vbox" entity-height-container offset="10">
+            <div class="inline-module-header">
+                <h2>{{UIARGS.reportName || UIARGS.name}}</h2>
+                <div class="_buttons">
+                    <a class="max-toggler _btn" ng-if="UIARGS.enableMaximize">
+                        <i class="fa fa-fw fa-expand" />
+                    </a>
+                </div>
+            </div>
+            <div class="inline-module-filters" ng-include="UIARGS.filtersTemplate"></div>
+            <div class="row-row">
+
+                <div class="cell no-overflow">
+                    <div class="cell-inner">
+
+                        <div class="hbox hbox-hier">
+                            <!--LEVEL 0-->
+                            <div class="col">
+                                <div class="vbox b bg-white-only">
+                                    <div class="vbox-header-col bordered">
+                                        {{'Units' | translate}}
+                                    </div>
+                                    <div class="row-row">
+                                        <div class="cell">
+                                            <div class="cell-inner ">
+
+                                                <div class="ptree-member b-b hover-anchor" ng-repeat="o in ui.data | filter:{parentId: null}"  ng-click="selectUnit(o)" ng-class="{'active':ui.selectedUnit == o}">
+                                                    <!--<a class="hover-action pull-right flip" ng-click="editMember(o, 'unit')">
+                                                        <i class="fa fa-fw fa-pencil"></i>
+                                                    </a>-->
+                                                    {{o.name}}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="wrapper-sm b-t">
+                                        <button type="button"class="btn btn-primary btn-block" ng-click="addUnit()">
+                                            {{'Add Unit' | translate}}
+                                        </button>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="col" style="width:15px"></div>
+                            <!--LEVEL 1-->
+                            <div class="col">
+                                <div class="vbox b">
+                                    <div class="vbox-header-col bordered">
+                                        {{'Sub Units' | translate}}
+                                    </div>
+                                    <div class="row-row">
+                                        <div class="cell">
+                                            <div class="cell-inner">
+
+                                                <div ng-if="ui.selectedUnit">
+                                                    <div class="ptree-member b-b hover-anchor" ng-repeat="o in ui.data | filter:{parentId: ui.selectedUnit.id}:true" ng-click="selectDepartment(o)" ng-class="{'active':ui.selectedDepartment == o}">
+                                                        <!--<a class="hover-action pull-right flip" ng-click="editMember(o, 'department')">
+                                                            <i class="fa fa-fw fa-pencil"></i>
+                                                        </a>-->
+                                                        {{o.name}}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="wrapper-sm b-t" ng-if="ui.selectedUnit">
+                                        <button type="button" class="btn btn-primary btn-block" ng-click="addDepartment()">
+                                            {{'Add Department' | translate}}
+                                        </button>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="col" style="width:15px"></div>
+                            <!--LEVEL 2-->
+                            <div class="col">
+                                <div class="vbox b">
+                                    <div class="vbox-header-col bordered">
+                                        {{'Subjects' | translate}}
+                                    </div>
+                                    <div class="row-row">
+                                        <div class="cell">
+                                            <div class="cell-inner">
+
+                                                <div ng-if="ui.selectedDepartment">
+                                                    <div class="ptree-member b-b hover-anchor" ng-repeat="o in ui.data | filter:{parentId: ui.selectedDepartment.id}:true" ng-click="selectGroup(o)" ng-class="{'active':ui.selectedGroup == o}">
+                                                        <a class="hover-action pull-right flip" ng-click="editMember(o, 'group')">
+                                                            <i class="fa fa-fw fa-pencil"></i>
+                                                        </a>
+                                                        {{o.name}}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wrapper-sm b-t" ng-if="ui.selectedDepartment">
+                                        <button type="button" class="btn btn-primary btn-block" ng-click="addGroup()">
+                                            {{'Add Subject' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

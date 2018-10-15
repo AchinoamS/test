@@ -1,0 +1,20 @@
+﻿
+<div class="wrapper-sm">
+    <div class="bg-light b-b wrapper-xs">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="searchValue" ng-keyup="searchKeyUp($event)" />
+            <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
+    <div kendo-tree-view="treeData2222" k-options="treeViewOptions" ng-model="treeCheck" k-on-change="on_tree_selected(dataItem)" style="height:400px; padding:10px;">
+        <span k-template>{{dataItem.name}}</span>
+    </div>
+
+    {{treeData}}
+    <!--<div>
+        <button type="submit" class="btn btn-primary w-xs" ng-click="form.submitAttempt=true;apply()">{{'Save' | translate}}</button>
+    </div>-->
+</div>
+

@@ -1,0 +1,45 @@
+﻿
+<div class="dvModalBodyContainer">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="$dismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-title">
+            <span>{{'User Edit' | translate}}</span>
+            <span class="text-sm inline m-near">{{user.firstName}}&nbsp;{{user.lastName}}</span>
+        </h3>
+    </div>
+
+    <div class="vbox" entity-height-container offset="50">
+        <!--START TABS HEADERS-->
+        <div class="nav-tabs-alt lter bg-light">
+            <ul class="nav nav-tabs text-md font-bold">
+                <li ng-class="{'active': ui.tab == tab.key}" ng-repeat="tab in ui.tabs" ng-if="!tab.tabDisable">
+                    <a href ng-click="setTab(tab.key)">{{tab.text | translate}}</a>
+                </li>
+            </ul>
+        </div>
+        <!--END TABS HEADERS-->
+        <!--START TABS CONTENT-->
+        <div class="row-row">
+            <div class="cell">
+                <div class="cell-inner">
+                    <span ng-if="ui.tab == 'D' && !ui.loading">
+                        <div class="h-full wrapper-sm" ng-controller="user_modal_personal_details" ng-include="'modules/users/blocks/user_modal_personal_details.html'"></div>
+                    </span>
+                    <span ng-if="ui.tab == 'B' && !ui.loading">
+                        <div class="h-full wrapper-sm" ng-controller="user_modal_bi_premissions" ng-include="'modules/users/blocks/user_modal_bi_premissions.html'"></div>
+                    </span>
+                    <span ng-if="ui.tab == 'P' && !ui.loading">
+                        <div class="h-full wrapper-sm" ng-controller="user_modal_purchase_premissions" ng-include="'modules/users/blocks/user_modal_purchase_premissions.html'"></div>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--END TABS CONTENT-->
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default w-xs" ng-click="$dismiss()">Cancel</button>
+        <button type="submit" class="btn btn-primary w-xs" ng-click="form.submitAttempt=true;apply()">{{'Save' | translate}}</button>
+    </div>
+</div>
+

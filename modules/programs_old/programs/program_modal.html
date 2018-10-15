@@ -1,0 +1,331 @@
+﻿<form name="dform" id="dform" class="form-validation" ng-class="{'form_submitted':ui.submitAttempt}">
+    <div class="dvModalBodyContainer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="close()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title">
+                <span ng-if="!program.id">{{'Add Program' | translate}}</span>
+                <span class="inline m-near"> {{program.name}} </span>
+                <span class="inline m-near"> - {{program.id}}</span>
+            </h3>
+        </div>
+
+        <!--START TABS HEADERS-->
+        <div class="nav-tabs-alt lter bg-light">
+            <ul class="nav nav-tabs text-md font-bold">
+                <li class="active">
+                    <a href ng-clickX="setTab('G')">{{'General Details' | translate}}</a>
+                </li>
+            </ul>
+        </div>
+        <!--END TABS HEADERS-->
+
+        <div style="min-height:482px;">
+            <!--START GENERAL DETAILS-->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>{{'Program Name' | translate}}</label>
+                            <input type="text" class="form-control" ng-model="program.name" name="name" required ng-disabled="ui.formDisabled">
+                        </div>
+                        <div class="form-group">
+                            <label>{{'Program English Name' | translate}}</label>
+                            <input type="text" class="form-control" ng-model="program.name_eng" name="name_eng" required ng-disabled="ui.formDisabled">
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'Program Hierarchy Node' | translate}}</label>
+                            <button type="button" class="btn btn-light btn-block" ng-class="{'btn-danger':ui.submitAttempt && !program.hierarchy}" ng-click="openHierarchyDialog()">
+                                {{program.hierarchy ? program.hierarchy.name : ('Program Hierarchy Node' | translate)}}
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'Program Description Hebrew' | translate}}</label>
+                            <textarea class="form-control" ng-model="program.description" style="min-height:100px;" name="description" required ng-disabled="ui.formDisabled"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'Program English Description' | translate}}</label>
+                            <textarea class="form-control" ng-model="program.description_eng" style="min-height:100px; text-align:left;" name="description_eng" required ng-disabled="ui.formDisabled"></textarea>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label>{{'Program Summary' | translate}}</label>
+                            <textarea class="form-control" ng-model="program.summary" name="summary" ng-disabled="ui.formDisabled"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'Program English Summary' | translate}}</label>
+                            <textarea class="form-control" ng-model="program.summary_eng" name="summary_eng" ng-disabled="ui.formDisabled"></textarea>
+                        </div>
+                        -->
+                        <div class="form-group">
+                            <label>{{'Months Duration' | translate}}</label>
+                            <input type="number" class="form-control" ng-model="program.month_duration" name="month_duration" required ng-disabled="ui.formDisabled" min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'Intervention Strategy' | translate}}</label>
+                            <ui-select ng-model="program.intervention_strategy" name="intervention_strategy" ng-required="true" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item.id as item in meta.intervention_strategies | propsFilter: {name: $select.search}">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'ERP Segment' | translate}}</label>
+                            <input type="text" class="form-control" ng-model="program.erp_segment" name="erp_segment" ng-disabled="ui.formDisabled">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>{{'Target Audiences' | translate}}</label>
+                            <ui-select multiple ng-model="program.target_audiences" name="target_audiences" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="item.id as item in meta.target_audiences | propsFilter: {name: $select.search}">
+                                    <div>
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                    </div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'Target Audiences Ages' | translate}}</label>
+                            <ui-select multiple ng-model="program.target_audiences_ages" name="target_audiences_ages" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="item.id as item in meta.ages | propsFilter: {name: $select.search}">
+                                    <div>
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                    </div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>{{'Target Audiences Description' | translate}}</label>
+                            <textarea class="form-control" ng-model="program.target_audiences_description" name="target_audiences_description" ng-disabled="ui.formDisabled"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'Target Audiences English Description' | translate}}</label>
+                            <textarea class="form-control" ng-model="program.target_audiences_description_eng" name="target_audiences_description_eng" style="text-align:left;" ng-disabled="ui.formDisabled"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'Budget Book Affiliation' | translate}}</label>
+                            <ui-select ng-model="program.budjet_book_id" name="budjet_book_id" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item.id as item in meta.budjet_book | propsFilter: {name: $select.search}">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-7">
+                        <!--START Partners-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                {{'Program Partners' | translate}}
+                            </div>
+                            <table class="table">
+                                <tbody>
+                                    <tr ng-if="!ui.formDisabled">
+                                        <td style="width:160px">
+                                            <ui-select ng-model="ui.partnerInsert.partner" theme="bootstrap">
+                                                <ui-select-match placeholder="{{'Partner' | translate}}">{{$select.selected.name}}</ui-select-match>
+                                                <ui-select-choices repeat="item.id as item in meta.partners | propsFilter: {name: $select.search}">
+                                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" ng-model="ui.partnerInsert.value" min="0" placeholder="{{'Participation Percent' | translate}}">
+                                        </td>
+                                        <td style="width:50px">
+                                            <button type="button" class="btn btn-light btn-block" ng-click="addPartner()">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="partner in program.partners" class="text-md">
+                                        <th class="v-middle b-t b-far">{{partner.partner | mapEnt:meta.partners}}</th>
+                                        <th class="v-middle b-t b-far">
+                                            {{partner.value | number:2}}
+                                        </th>
+                                        <td class="v-middle b-t">
+                                            <button type="button" class="btn btn-light btn-block" ng-click="deletePartner($index)">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--END Partners-->
+                        <!--START Locations-->
+                        <div class="panel" ng-class="{'panel-danger': ent.error, 'panel-default': !ent.error}" ng-repeat="ent in ui.locationEnts" ng-init="_ent_data = program[ent.key]">
+                            <div class="panel-heading">
+                                <div class="pull-right flip">
+                                    <div class="btn-group btn-group-sm" style="position:relative; top:-5px; left:-5px">
+                                        <label class="btn btn-toggle" ng-model="_ent_data.mandatory" ng-repeat="m in meta.enum_mandatory" ng-disabled="ui.formDisabled" uib-btn-radio="m.value">
+                                            {{m.text}}
+                                        </label>
+                                    </div>
+                                </div>
+                                {{ent.name | translate}}
+                            </div>
+                            <table class="table" ng-if="_ent_data.mandatory && _ent_data.mandatory != 'N'">
+                                <tbody>
+                                    <tr>
+                                        <td>{{'Countries' | translate}}</td>
+                                        <td>
+                                            <ui-select multiple ng-model="_ent_data.countries" ng-change="ent.error = false" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                                <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
+                                                <ui-select-choices repeat="item in meta.countries | propsFilter: {name: $select.search} | limitTo: 50">
+                                                    <div>
+                                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                    </div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'Cities' | translate}}</td>
+                                        <td>
+                                            <ui-select multiple ng-model="_ent_data.cities" ng-change="ent.error = false" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                                <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
+                                                <ui-select-choices repeat="item in meta.cities | propsFilter: {name: $select.search} | limitTo: 50">
+                                                    <div>
+                                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                    </div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{'Locations' | translate}}</td>
+                                        <td>
+                                            <ui-select multiple ng-model="_ent_data.locations" ng-change="ent.error = false" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                                <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
+                                                <ui-select-choices repeat="item in meta.locations | propsFilter: {name: $select.search} | limitTo: 50">
+                                                    <div>
+                                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                    </div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--END Locations-->
+                        <!--START Activity types-->
+                        <div class="panel" ng-class="{'panel-danger': ent.error, 'panel-default': !ent.error}" ng-repeat="ent in ui.actvityEnts" ng-init="_ent_data = program[ent.key]">
+                            <div class="panel-heading">
+                                <div class="pull-right flip">
+                                    <div class="btn-group btn-group-sm" style="position:relative; top:-5px; left:-5px">
+                                        <label class="btn btn-toggle" ng-model="_ent_data.mandatory" ng-repeat="m in meta.enum_mandatory" ng-disabled="ui.formDisabled" uib-btn-radio="m.value">
+                                            {{m.text}}
+                                        </label>
+                                    </div>
+                                </div>
+                                {{ent.name | translate}}
+                            </div>
+                            <table class="table" ng-if="_ent_data.mandatory && _ent_data.mandatory != 'N'">
+                                <tbody>
+                                    <tr>
+                                        <td>{{'Activity Types' | translate}}</td>
+                                        <td>
+                                            <ui-select multiple ng-model="_ent_data.activity_types" ng-change="ent.error = false" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                                <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
+                                                <ui-select-choices repeat="item.id as item in meta.activity_types | propsFilter: {name: $select.search}">
+                                                    <div>
+                                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                    </div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--END Activity types-->
+
+                        <div class="form-group">
+                            <label>{{'Measures' | translate}}</label>
+                            <ui-select multiple ng-model="program.measures" name="measures" theme="bootstrap" ng-required="true" ng-disabled="ui.formDisabled">
+                                <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="item.id as item in meta.measurements | propsFilter: {name: $select.search}">
+                                    <div>
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                    </div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'Notes' | translate}}</label>
+                            <textarea class="form-control" ng-model="program.notes" name="notes" ng-disabled="ui.formDisabled"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'Notes English' | translate}}</label>
+                            <textarea class="form-control" ng-model="program.notes_eng" name="notes_eng" style="text-align:left;" ng-disabled="ui.formDisabled"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'Unit Referant' | translate}}</label>
+                            <ui-select ng-model="program.referant" name="referant" ng-required="true" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item.id as item in meta.users | filter:{userType: 'R'} | propsFilter: {name: $select.search}">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>{{'Program Manager' | translate}}</label>
+                            <ui-select multiple ng-model="program.manager" name="manager" theme="bootstrap" ng-disabled="ui.formDisabled">
+                                <ui-select-match placeholder="">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="item.id as item in meta.users | filter:{userType: 'P'} | propsFilter: {name: $select.search}">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>{{'Year Type' | translate}}</label>
+                            <select class="form-control" ng-model="program.year_type" name="year_type" required
+                                    ng-disabled="ui.formDisabled"
+                                    ng-options="opt.value as opt.text for opt in meta.year_types"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'Substitutes Accomulates' | translate}}</label>
+                            <select class="form-control" ng-model="program.subs_acc" name="subs_acc" required
+                                    ng-disabled="ui.formDisabled"
+                                    ng-options="opt.value as opt.text for opt in meta.subs_acc"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'Status' | translate}}</label>
+                            <select class="form-control" ng-model="program.active" name="status" required
+                                    ng-disabled="ui.formDisabled"
+                                    ng-options="opt.value as opt.text for opt in meta.program_status"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END GENERAL DETAILS-->
+        </div>
+
+        <div class="modal-footer" ng-if="!ui.formDisabled">
+            <button type="button" class="btn btn-default w-xs" ng-click="close()">{{'Cancel' | translate}}</button>
+            <button type="submit" class="btn btn-primary w-xs" ng-click="ui.submitAttempt=true;apply()">{{'Save' | translate}}</button>
+        </div>
+
+    </div>
+</form>
+
+

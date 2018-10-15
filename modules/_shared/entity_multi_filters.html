@@ -1,0 +1,110 @@
+
+<div ng-repeat="filter in frow.filters" ng-switch="filter.type" class="{{filter.class ? filter.class : 'col-md-3 col-sm-6'}}">
+    <!--dateRange filter ------------------------------------------------------------------------ -->
+    <span ng-switch-when="dateRange" ng-class="{'v-error':reportForm.cluster.$error.required}">
+        <label class="text-xs text-muted">{{ filter.name || 'Date Range' | translate }}</label>
+        <input date-range-picker id="daterange2" class="form-control date-picker" type="text" readonly="readonly" style="background-color:#fff; cursor:pointer"
+               name="date" options="filter.options || UIARGS.dateOpts" ng-model="UIARGS.filter.dateRange" />
+    </span>
+
+    <!-- -->
+    <!--dates------------------------------------------------------------------------ -->
+    <span ng-switch-when="dates" ng-class="{'v-error':filter.requiered && !UIARGS.filter[filter.field].startDate}">
+        <label class="text-xs text-muted">{{ filter.name || 'Date Range' | translate }}</label>
+        <input date-range-picker id="{{'dates_' + $index}}" class="form-control date-picker" type="text" readonly="readonly" style="background-color:#fff; cursor:pointer"
+               name="date" options="filter.options || UIARGS.dateOpts" ng-model="UIARGS.filter[filter.field]" />
+    </span>
+
+    <!--list------------------------------------------------------------------------ -->
+    <span ng-switch-when="list" ng-class="{'v-error':reportForm[filter.field].$error.required}">
+        <label class="text-xs text-muted">{{ filter.name}}</label>
+        <select class="form-control " name="{{filter.field}}" ng-model="UIARGS.filter[filter.field]" ng-required="filter.requiered">
+            <option value="" ng-if="!filter.requiered" ng-selected="!filter.value">{{ (filter.allCaption || '--All--') | translate }}</option>
+            <option ng-repeat="o in filter.listValues" ng-selected="o.id == UIARGS.filter[filter.field]" value="{{o.id}}">{{o.name}}</option>
+        </select>
+    </span>
+
+    <!--select ------------------------------------------------------------------------ -->
+
+    <span ng-switch-when="select" ng-class="{'v-error':filter.requiered && !UIARGS.filter[filter.field]}">
+        <label class="text-xs text-muted">{{ filter.name}}</label>
+        <ui-select ng-model="UIARGS.filter[filter.field]" theme="bootstrap" class="no-validation">
+            <ui-select-match placeholder="{{filter.placeholder}}">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="member.id as member in filter.listValues | propsFilter: {name: $select.search}">
+                <div>
+                    <span ng-bind-html="member.name | highlight: $select.search"></span>
+                </div>
+            </ui-select-choices>
+        </ui-select>
+    </span>
+
+    <!--enum select ------------------------------------------------------------------------ -->
+
+    <span ng-switch-when="enumSelect" ng-class="{'v-error':filter.requiered && !UIARGS.filter[filter.field]}">
+        <label class="text-xs text-muted">{{ filter.name}}</label>
+        <ui-select ng-model="UIARGS.filter[filter.field]" theme="bootstrap" class="no-validation">
+            <ui-select-match placeholder="{{filter.placeholder}}">{{$select.selected.text}}</ui-select-match>
+            <ui-select-choices repeat="member.value as member in filter.listValues | propsFilter: {text: $select.search}">
+                <div>
+                    <span ng-bind-html="member.text | highlight: $select.search"></span>
+                </div>
+            </ui-select-choices>
+        </ui-select>
+    </span>
+
+    <!--list multi ------------------------------------------------------------------------ -->
+    <span ng-switch-when="listMulti" ng-class="{'v-error':filter.requiered && !UIARGS.filter[filter.field].length}">
+        <label class="text-xs text-muted">{{ filter.name}}</label>
+        <ui-select multiple ng-model="UIARGS.filter[filter.field]" theme="bootstrap" class="no-validation">
+            <ui-select-match placeholder="{{filter.placeholder}}">{{$item.name}}</ui-select-match>
+            <ui-select-choices repeat="member.id as member in filter.listValues | propsFilter: {name: $select.search}">
+                <div>
+                    <i ng-if="member.icon" class="m-far-xs {{member.icon}}"></i>
+                    <span ng-bind-html="member.name | highlight: $select.search"></span>
+                </div>
+            </ui-select-choices>
+        </ui-select>
+    </span>
+
+    <!--enum list multi ------------------------------------------------------------------------ -->
+
+    <span ng-switch-when="enumListMulti" ng-class="{'v-error':filter.requiered && !UIARGS.filter[filter.field].length}">
+        <label class="text-xs text-muted">{{ filter.name}}</label>
+        <ui-select multiple ng-model="UIARGS.filter[filter.field]" theme="bootstrap" class="no-validation">
+            <ui-select-match placeholder="{{filter.placeholder}}">{{$item.text}}</ui-select-match>
+            <ui-select-choices repeat="member.value as member in filter.listValues | propsFilter: {text: $select.search}">
+                <div>
+                    <i ng-if="member.icon" class="m-far-xs {{member.icon}}"></i>
+                    <span ng-bind-html="member.text | highlight: $select.search"></span>
+                </div>
+            </ui-select-choices>
+        </ui-select>
+    </span>
+
+    <!--numeric------------------------------------------------------------------------ -->
+    <span ng-switch-when="numeric" ng-class="{'v-error':reportForm[filter.field].$error.required}">
+        <label class="text-xs text-muted">{{ filter.name}}</label>
+        <input name="{{filter.field}}" ui-jq="TouchSpin" type="text" value="5" class="form-control" ng-model="UIARGS.filter[filter.field]" ng-required="filter.requiered" data-min="{{filter.min + ''}}" data-max="{{filter.max + ''}}" data-step="{{filter.step + ''}}" data-decimals="{{filter.decimals + ''}}" data-postfix="{{filter.postfix}}" style="text-align:center">
+    </span>
+
+    <!--string------------------------------------------------------------------------ -->
+    <span ng-switch-when="string" ng-class="{'v-error':reportForm[filter.field].$error.required}">
+        <label class="text-xs text-muted">{{ filter.name}}</label>
+        <input name="{{filter.field}}" type="text" class="form-control" ng-model="UIARGS.filter[filter.field]" ng-required="filter.requiered">
+    </span>
+
+    <!--kdate------------------------------------------------------------------------ -->
+    <span ng-switch-when="kdate" ng-class="{'v-error':reportForm[filter.field].$error.required}">
+        <label class="text-xs text-muted">{{ filter.name}}</label>
+        <input name="{{filter.field}}" kendo-date-picker ng-model="UIARGS.filter[filter.descField]" ng-required="filter.requiered" k-ng-model="UIARGS.filter[filter.field]" k-options="filter.options" k-format="filter.format" style="width: 100%;" onkeydown="return false;" onclick="$(this).parent().children('span').click()" />
+    </span>
+
+    <!--range------------------------------------------------------------------------ -->
+    <span ng-switch-when="range">
+        <label class="text-xs text-muted">{{ filter.name}} ({{UIARGS.filter[filter.min]}} - {{UIARGS.filter[filter.max]}})</label>
+        <rzslider rz-slider-model="UIARGS.filter[filter.min]" rz-slider-high="UIARGS.filter[filter.max]" rz-slider-options="filter.options" class="text-xs text-dark dir-ltr"></rzslider>
+    </span>
+    <!--end filters ------------------------------------------------------------------------ -->
+
+
+</div>

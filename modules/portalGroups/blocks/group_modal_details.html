@@ -1,0 +1,20 @@
+﻿<div class="wrapper-sm">
+    <form name="form" id="form" class="form-validation" ng-class="{'form_submitted':form.submitAttempt}">
+        <div class="form-group" ng-if="isNew">
+            <label>{{'Group Name' | translate}}</label>
+            <input type="text" class="form-control" ng-model="group.name" name="gName" required />
+            <hr />
+        </div>
+        
+
+        <!--START OF USERS-->
+        <div class="row-row">
+            <div class="cell no-overflow">
+                <div class="full-height" style="padding-bottom:2px">
+                    <kendo-grid id="reportGrid" options="gridConfig" k-data-source="reportDS" k-on-change="onRowSelect(data)" class="module-inner-container" style="height:100%;"></kendo-grid>
+                </div>
+            </div>
+        </div>
+        <!--END OF USERS-->
+    </form>
+</div>

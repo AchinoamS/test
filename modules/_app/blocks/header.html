@@ -1,0 +1,77 @@
+﻿<!-- navbar header -->
+<div class="navbar-header {{app.settings.navbarHeaderColor}}">
+    <button class="pull-right flip visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+        <i class="glyphicon glyphicon-cog"></i>
+    </button>
+    <button class="pull-right flip visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+        <i class="glyphicon glyphicon-align-justify"></i>
+    </button>
+
+    <!-- brand -->
+    <span href="#/" class="navbar-brand text-lt">
+        <!--<i class="fa fa-bar-chart-o"></i>-->
+        <img alt="." src="img/app_logo.png">
+        <span class="hidden-folded m-near-xs">{{app.name}}</span>
+    </span>
+    <!-- / brand -->
+</div>
+<!-- / navbar header -->
+<!-- navbar collapse -->
+<div class="collapse pos-rlt navbar-collapse box-shadowX b-b {{app.settings.navbarCollapseColor}}">
+
+    <!-- buttons -->
+
+    <ul class="nav navbar-nav hidden-xs lter pull-in" ng-class="{'hidden': app.settings.asideDock}" >
+        <li>
+            <a  ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+                <i class="fa i-flipped {{app.settings.asideFolded ? 'fa-chevron-right' : 'fa-chevron-left'}} fa-fw"></i>
+            </a>
+        </li>
+    </ul>
+
+    <div class="nav navbar-nav hidden-xs" ng-show="meta.sectionCaption">
+        <p class="section-caption thin text-lg m-n padder" style="line-height:48px;" ng-bind-html="meta.sectionCaption"></p>
+    </div>
+    <!-- / buttons -->
+    <!-- link and dropdown -->
+    <ul class="nav navbar-nav hidden-sm"></ul>
+    <!-- / link and dropdown -->
+    <!-- nabar right -->
+    <ul class="nav navbar-nav navbar-right flip">
+        <!--<li class="dropdown hidden-sm" is-open="lang.isopen" uib-dropdown>
+            <a class="dropdown-toggle" uib-dropdown-toggle>
+                {{selectLang}} <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight w">
+                <li ng-repeat="(langKey, label) in langs">
+                    <a ng-click="setLang(langKey, $event)" href>{{label}}</a>
+                </li>
+            </ul>
+        </li>-->
+        <!--<li class="hidden-xs b-far b-dk"><a ui-fullscreen></a></li>-->
+
+        <li class="dropdown hidden-sm" uib-dropdown auto-close="outsideClick">
+            <a class="dropdown-toggle text-md" uib-dropdown-toggle>
+                <i class="fa fa-gear"></i>
+            </a>
+            <div class="dropdown-menu animated fadeInRight w-lg drop-settings" ng-click="$event.stopPropagation();" ng-include="'modules/_app/blocks/settings_modal.html'"></div>
+        </li>
+
+        <li class="dropdown" uib-dropdown>
+            <a class="dropdown-toggle clear" uib-dropdown-toggle>
+                <span class="thumb-sm avatar pull-right flip m-t-n-sm m-b-n-sm m-near-sm">
+                    <img src="img/no_pic_user-01.svg" alt="...">
+                    <i class="on md b-white bottom"></i>
+                </span>
+                <span class="hidden-sm hidden-md">{{AuthService.user.name}}</span> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight w">
+                <li>
+                    <a ui-sref="access.signin">{{ 'Logout' | translate }}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- / navbar right -->
+</div>
+<!-- / navbar collapse -->

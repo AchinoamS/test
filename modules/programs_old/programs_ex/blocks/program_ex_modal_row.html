@@ -1,0 +1,82 @@
+﻿<form name="dform" id="dform" class="form-validation" ng-class="{'form_submitted':ui.submitAttempt}">
+    <div class="dvModalBodyContainer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="$dismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title">
+                {{'Row Editor' | translate}}
+            </h3>
+        </div>
+        <div class="modal-body form-horizontal">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group" ng-repeat="col in colsParams.dimensions">
+                        <label class="col-md-3">
+                            <a ng-click="addLocationRow(col, uiInsert)" uib-tooltip="{{'Add Location' | translate}}" tooltip-append-to-body="true" ng-if="col.type == 'location'">
+                                <i class="fa fa-fw fa-plus"></i>
+                                {{col.text | translate}}
+                            </a>
+                            <span ng-if="col.type != 'location'">
+                                {{col.text | translate}}
+                            </span>
+                        </label>
+                        <div class="col-md-9">
+                            <ui-select ng-model="uiInsert.dimensions[col.field]" ng-required="col.requiered" theme="bootstrap" ng-disabled="uiRow.formDisabled">
+                                <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="item in col.members | propsFilter: {name: $select.search}">
+                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group" ng-repeat="col in colsParams.measures">
+                        <label class="col-md-3">{{col.text | translate}}</label>
+                        <div class="col-md-9">
+                            <input type="number" class="form-control" ng-model="uiInsert.measures[col.id]" required ng-disabled="uiRow.formDisabled">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {{'Notes' | translate}}
+                        </div>
+                        <div class="wrapper-lg text-muted text-center" ng-if="!uiInsert.notes.length">{{'No notes found' | translate}}</div>
+                        <table class="table" ng-if="uiInsert.notes.length">
+                            <tr ng-repeat="note in uiInsert.notes">
+                                <td>
+                                    {{note.text}}
+                                    <div class="text-muted text-xs m-t-xs">
+                                        <div class="inline m-fa-xs"><i class="fa fa-user fa-fw"></i>{{note.createdBy}},</div>
+                                        <div class="inline">{{note.created | date:'MMM-dd-yy, HH:mm'}}</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="bg-light b-t" ng-if="!uiRow.formDisabled">
+                            <div class="wrapper-xs ">
+                                <textarea class="form-control" placeholder="{{'Add Note' | translate}}" ng-model="newNote.text"></textarea>
+                            </div>
+                            <div class="text-far">
+                                <button type="button" class="btn btn-link" ng-click="addNote()">
+                                    <i class="fa fa-fw fa-plus"></i>
+                                    {{'Add Note' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer" ng-if="!uiRow.formDisabled">
+            <button type="button" class="btn btn-danger w-xs pull-left flip" ng-click="delete()">{{'Delete' | translate}}</button>
+            <button type="button" class="btn btn-default w-xs" ng-click="$dismiss()">{{'Cancel' | translate}}</button>
+            <button type="submit" class="btn btn-primary w-xs" ng-click="form.submitAttempt=true;apply()">{{'Save' | translate}}</button>
+        </div>
+    </div>
+</form>
+

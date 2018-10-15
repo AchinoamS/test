@@ -1,0 +1,24 @@
+
+<div class="_layoutbox module-inner-container" data-ng-style="UIARGS.maxFiltersWidth && {'max-width':UIARGS.maxFiltersWidth + 'px'}" ng-if="UIARGS.filterDesign.rows">
+    <form name="reportForm" class="form-validation" ng-submit="applyReport(reportForm)">
+        <div class="hbox">
+            <div class="col">
+                <div class="row" ng-repeat="frow in UIARGS.filterDesign.rows" ng-include="'modules/_shared/entity_multi_filters.html'" onload="onFiltersLoaded()"></div>
+                <div uib-collapse="!UIARGS.showExtraFilters">
+                    <div class="row" ng-repeat="frow in UIARGS.filterDesign.extraRows" ng-include="'modules/_shared/entity_multi_filters.html'"></div>
+                </div>
+            </div>
+            <div class="col v-bottom text-center" style="width:115px;" ng-if="UIARGS.filterDesign.extraRows.length">
+                <div ng-if="UIARGS.filterDesign.extraRows.length" class="m-near-sm">
+                    <a class="block text-center padder-v-sm" ng-click="toggleExtraFilter()" ng-show="UIARGS.showExtraFilters"><i class="fa fa-angle-double-up"></i> {{ 'Less Filters' | translate }}</a>
+                    <a class="block text-center padder-v-sm" ng-click="toggleExtraFilter()" ng-show="!UIARGS.showExtraFilters"><i class="fa fa-angle-double-down"></i> {{ 'More Filters' | translate }}</a>
+                </div>
+            </div>
+            <div class="col v-bottom _col-apply">
+                <button type="submit" class="btn btn-primary btn-block">
+                    {{ 'Apply' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,93 @@
+﻿<form name="dform" id="dform" class="form-validation" ng-class="{'form_submitted':uiPS.submitAttempt}">
+    <div class="dvModalBodyContainer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="$dismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title">
+                {{'Row Editor' | translate}}
+            </h3>
+        </div>
+        <div class="modal-body">
+					<div class="">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{{'Move Name' | translate}}</label>
+									<textarea class="form-control" ng-model="plan_data.move_name" name="move_name" required ng-disabled="uiPS.formDisabled" style="min-height:80px"></textarea>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{{'Expected Result' | translate}}</label>
+									<textarea class="form-control" ng-model="plan_data.expected_result" name="expected_result" required ng-disabled="uiPS.formDisabled" style="min-height:80px"></textarea>
+								</div>
+							</div>
+						</div>
+
+						<hr />
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{{'Influence Objective' | translate}}</label>
+									<ui-select ng-model="plan_data.influence_objective" name="influence_objective" ng-required="true" theme="bootstrap" ng-disabled="uiPS.formDisabled">
+										<ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+										<ui-select-choices repeat="item.id as item in meta.influence_objectives | propsFilter: {name: $select.search}">
+											<div ng-bind-html="item.name | highlight: $select.search"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{{'Intervention Strategy' | translate}}</label>
+									<ui-select ng-model="plan_data.intervention_strategy" name="intervention_strategy" ng-required="true" theme="bootstrap" ng-disabled="uiPS.formDisabled">
+										<ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+										<ui-select-choices repeat="item.id as item in meta.intervention_strategies | propsFilter: {name: $select.search}">
+											<div ng-bind-html="item.name | highlight: $select.search"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+							</div>
+						</div>
+
+						<hr />
+
+						<div class="row">
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{{'Expected Output' | translate}}</label>
+									<input type="number" class="form-control" ng-model="plan_data.expected_output" name="expected_output" required ng-disabled="uiPS.formDisabled">
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{{'Core Budget' | translate}}</label>
+									<input type="number" class="form-control" ng-model="plan_data.core_budget" name="core_budget" required ng-disabled="uiPS.formDisabled">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{{'Designated Budget' | translate}}</label>
+									<input type="number" class="form-control" ng-model="plan_data.designated_budget" name="designated_budget" required ng-disabled="uiPS.formDisabled">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>{{'Service Sales' | translate}}</label>
+									<input type="number" class="form-control" ng-model="plan_data.service_sales" name="service_sales" required ng-disabled="uiPS.formDisabled">
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+        </div>
+        <div class="modal-footer" ng-if="!uiPS.formDisabled">
+            <button type="button" class="btn btn-default w-xs" ng-click="$dismiss()">{{'Cancel' | translate}}</button>
+            <button type="submit" class="btn btn-primary w-xs" ng-click="uiPS.submitAttempt=true;apply()">{{'Save' | translate}}</button>
+        </div>
+    </div>
+</form>
+

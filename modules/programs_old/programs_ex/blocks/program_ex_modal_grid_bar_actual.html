@@ -1,0 +1,26 @@
+﻿
+<div class="clear">
+    <button type="button" class="btn m-far-xs btn-link text-success" 
+            ng-if="program_data.actualCanApprove && !program_data.actualApproved" 
+            ng-click="approveRows({'actualApproved': true})">
+        <i class="fa fa-fw fa-check"></i>
+        {{'Approve Program' | translate}}
+    </button>
+    <button type="button" class="btn m-far-xs btn-link text-danger" 
+            ng-if="program_data.actualCanDecline && program_data.actualApproved"
+            ng-click="approveRows({'actualApproved': false})">
+        <i class="fa fa-fw fa-ban"></i>
+        {{'Decline' | translate}}
+    </button>
+
+
+    <div class="pull-right flip">
+        <button type="button" class="btn m-far-xs btn-success no-radius no-border" disabled ng-if="program_data.actualApproved">
+            {{'Approved' | translate}}
+        </button>
+        <button type="button" class="btn m-far-xs btn-danger no-radius no-border" disabled ng-if="!program_data.actualApproved">
+            {{'Not Approved' | translate}}
+        </button>
+    </div>
+</div>
+

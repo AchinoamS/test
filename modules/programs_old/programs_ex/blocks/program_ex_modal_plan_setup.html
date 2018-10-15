@@ -1,0 +1,11 @@
+﻿<div class="vbox">
+	<div class="row-row">
+		<div class="cell no-overflow">
+			<div class="cell-inner grid-wrapper full-height" style="padding-bottom:2px">
+
+				<kendo-grid id="reportGrid" options="gridConfig" k-data-source="reportDS" k-on-change="onRowSelect(data)" class="module-inner-container" style="height:100%" ng-ifX="gridConfig && !hideGrid && !UIARGS.detailTemplate"></kendo-grid>
+
+			</div>
+		</div>
+	</div>
+</div>

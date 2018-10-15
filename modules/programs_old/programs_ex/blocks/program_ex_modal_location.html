@@ -1,0 +1,60 @@
+﻿<form name="form" id="form" class="form-validation" ng-class="{'form_submitted':form.submitAttempt}">
+    <div class="dvModalBodyContainer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="$dismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title">
+                {{'Add Location' | translate}}
+            </h3>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-group">
+                <div ng-repeat="ent in uiLocation.entities">
+                    <div class="radio">
+                        <label class="i-checks">
+                            <input type="radio" name="a" ng-value="ent.entity" ng-model="location.ent" ng-change="location.entity = null">
+                            <i></i>
+                            {{ent.name | translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-if="location.ent == 'countries'">
+                <label>{{'Country' | translate}}</label>
+                <ui-select ng-model="location.entity" name="entity" ng-required="true" theme="bootstrap">
+                    <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item in meta.countries | propsFilter: {name: $select.search} | limitTo: 50">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+
+            <div class="form-group" ng-if="location.ent == 'cities'">
+                <label>{{'City' | translate}}</label>
+                <ui-select ng-model="location.entity" name="entity" ng-required="true" theme="bootstrap">
+                    <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item in meta.cities | propsFilter: {name: $select.search} | limitTo: 50">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+
+            <div class="form-group" ng-if="location.ent == 'locations'">
+                <label>{{'Locations' | translate}}</label>
+                <ui-select ng-model="location.entity" name="entity" ng-required="true" theme="bootstrap">
+                    <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item in meta.locations | propsFilter: {name: $select.search} | limitTo: 50">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+
+        </div>
+        <div class="modal-footer" ng-if="!uiRow.formDisabled">
+            <button type="button" class="btn btn-default w-xs" ng-click="$dismiss()">{{'Cancel' | translate}}</button>
+            <button type="submit" class="btn btn-primary w-xs" ng-click="form.submitAttempt=true;apply()">{{'Add' | translate}}</button>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,28 @@
+﻿<form name="dform" id="dform" class="form-validation" ng-class="{'form_submitted':uiD.submitAttempt}">
+    <div class="dvModalBodyContainer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="$dismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title">
+                {{'Add User' | translate}}
+            </h3>
+        </div>
+
+        <div class="modal-body">
+            <div class="form-group">
+                <label>{{'User Name' | translate}}</label>
+                <ui-select ng-model="user_data.id" name="newUser" ng-required="true" theme="bootstrap" ng-disabled="uiD.formDisabled">
+                    <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item.id as item in meta.users | propsFilter: {name: $select.search}">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        {{user_data}}
+        <div class="modal-footer" ng-if="!uiD.formDisabled">
+            <button type="button" class="btn btn-default w-xs" ng-click="$dismiss()">{{'Cancel' | translate}}</button>
+            <button type="submit" class="btn btn-primary w-xs" ng-click="uiD.submitAttempt=true;apply()">{{'Save' | translate}}</button>
+        </div>
+    </div>
+</form>
+

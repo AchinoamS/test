@@ -1,0 +1,71 @@
+﻿
+
+
+<div class="vbox">
+    <div class="wrapper-sm" ng-if="!colsParams.readonly">
+
+        <form name="form" id="form" class="form-validation" ng-class="{'form_submitted':colsParams.submitAttempt}">
+            <div class="row">
+                <div ng-repeat="col in colsParams.dimensions" class="col-md-3 col-sm-6">
+                    <div class="form-group">
+                        <label class="block">
+                            <a ng-click="addLocationRow(col, uiInsert)" uib-tooltip="{{'Add Location' | translate}}" tooltip-append-to-body="true" ng-if="col.type == 'location'">
+                                <i class="fa fa-fw fa-plus"></i>
+                                {{col.text | translate}}
+                            </a>
+                            <span ng-if="col.type != 'location'">
+                                {{col.text | translate}}
+                            </span>
+                        </label>
+                        <ui-select ng-model="uiInsert.dimensions[col.field]" ng-required="col.requiered" theme="bootstrap">
+                            <ui-select-match placeholder="">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="item in col.members | propsFilter: {name: $select.search}">
+                                <div ng-bind-html="item.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div ng-repeat="col in colsParams.measures" class="col-md-3 col-sm-6">
+                    <div class="form-group">
+                        <label>{{col.text | translate}}</label>
+                        <input type="number" class="form-control" ng-model="uiInsert.measures[col.id]" required>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <div class="row row-xs">
+                            <div class="col-xs-6">
+                                <button type="submit" class="btn btn-primary btn-block"
+                                        ng-click="colsParams.submitAttempt = true; addInsertLine(form)">
+                                    {{'Save' | translate}}
+                                </button>
+                            </div>
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-default btn-block" ng-click="resetForm(form)">{{'Clear' | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+
+    </div>
+    <div class="row-row">
+        <div class="cell no-overflow">
+            <div class="cell-inner grid-wrapper full-height" style="padding-bottom:2px">
+
+                <kendo-grid id="reportGrid" options="gridConfig" k-data-source="reportDS" k-on-change="onRowSelect(data)" class="module-inner-container" style="height:100%" ng-ifX="gridConfig && !hideGrid && !UIARGS.detailTemplate"></kendo-grid>
+                <!--<kendo-grid id="reportGrid" options="gridConfig" k-data-source="reportDS" k-on-change="onRowSelect(data)" class="module-inner-container" style="height:100%" ng-if="gridConfig && UIARGS.detailTemplate">
+                    <div k-detail-template>
+                        <div ng-include="UIARGS.detailTemplate"></div>
+                    </div>
+                </kendo-grid>-->
+
+            </div>
+        </div>
+    </div>
+</div>

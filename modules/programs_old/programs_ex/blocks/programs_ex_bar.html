@@ -1,0 +1,20 @@
+﻿
+<div class="clear">
+    <!--<button type="button"
+            class="btn btn-link m-far-sm" 
+            ng-repeat="act in UIARGS.actions" 
+            ng-click="editProgramData(dataItem, act.mode)" 
+            ng-disabled="!UIARGS.selectedRow">
+        <i class="fa m-far-xs fa-fw {{act.icon}}"></i>{{act.text | translate}}
+    </button>-->
+
+    <div class="pull-right flip">
+        <div class="input-group">
+            <input type="text" class="form-control" id="txtSearchString" ng-model="UIARGS.query" placeholder="{{'Search by name description' | translate}}" ng-keyup="searchGrid()">
+            <span class="input-group-addon" ng-click="UIARGS.query = null; searchGrid();">
+                <i class="fa fa-fw {{UIARGS.query && UIARGS.query.length ? 'fa-times' : 'fa-search'}}"></i>
+            </span>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,29 @@
+﻿
+    <div class="dvModalBodyContainer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="$dismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title">{{'Select Hierarchy' | translate}}</h3>
+        </div>
+
+        <div >
+            <div class="bg-light b-b wrapper-xs">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="searchValue" ng-keyup="searchKeyUp($event)" />
+                    <span class="input-group-addon">
+                        <i class="fa fa-search"></i>
+                    </span>
+                </div>
+            </div>
+            <div kendo-tree-view="treeView" k-options="treeViewOptions" k-on-change="on_tree_selected(dataItem)" style="height:300px; padding:10px;">
+                <span k-template ng-dblclick="apply()">{{dataItem.name}}</span>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default w-xs" ng-click="$dismiss()">{{'Cancel' | translate}}</button>
+            <button type="button" class="btn btn-primary w-xs" ng-click="apply()" ng-disabled="!selectedNode">{{'Apply' | translate}}</button>
+        </div>
+    </div>
+
+
+

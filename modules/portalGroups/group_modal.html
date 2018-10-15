@@ -1,0 +1,42 @@
+﻿
+<div class="dvModalBodyContainer">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="close()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-title">
+            <span>{{'Group Edit' | translate}}</span>
+            <span class="text-sm inline m-near">{{group.name}}</span>
+        </h3>
+    </div>
+
+    <div class="vbox" entity-height-container offset="50">
+        <!--START TABS HEADERS-->
+        <div class="nav-tabs-alt lter bg-light">
+            <ul class="nav nav-tabs text-md font-bold">
+                <li ng-class="{'active': ui.tab == tab.key}" ng-repeat="tab in ui.tabs">
+                    <a href ng-click="setTab(tab.key)">{{tab.text | translate}}</a>
+                </li>
+            </ul>
+        </div>
+        <!--END TABS HEADERS-->
+        <!--START TABS CONTENT-->
+        <div class="row-row">
+            <div class="cell">
+                <div class="cell-inner">
+                    <span ng-if="ui.tab == 'D' && !ui.loading">
+                        <div class="h-full wrapper-sm" ng-controller="group_modal_details" ng-include="'modules/portalGroups/blocks/group_modal_details.html'"></div>
+                    </span>
+                    <span ng-if="ui.tab == 'P' && !ui.loading">
+                        <div class="h-full wrapper-sm" ng-controller="group_modal_portal_premissions" ng-include="'modules/portalGroups/blocks/group_modal_portal_premissions.html'"></div>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--END TABS CONTENT-->
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary w-xs" ng-click="close()">{{'Close' | translate}}</button>
+        <!--<button type="submit" class="btn btn-primary w-xs" ng-click="form.submitAttempt=true;apply()">{{'Save' | translate}}</button>-->
+    </div>
+</div>
+

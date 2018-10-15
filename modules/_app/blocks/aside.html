@@ -1,0 +1,58 @@
+<div class="aside-wrap {{app.settings.asideColor}}">
+    <div class="navi-wrap" ui-jqX="slimScroll" ui-optionsX="{height:'100%', size:'8px'}">
+        <!-- nav -->
+        <nav ui-nav class="navi">
+            <ul class="nav" ng-repeat="menu in meta.menu">
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs" ng-if="!menu.hideHeader">
+                    <span ng-bind-html="menu.name"></span>
+                </li>
+                <li ng-repeat-start="module in menu.modules" ng-class="{'active':$state.includes(module.state), 'leaf': !module.children}">
+                    <!--module-->
+                    <a ng-if="!module.children" ng-click="$state.go(module.state)">
+                        <i class="{{module.icon || 'glyphicon glyphicon-map-marker'}} icon "></i>
+                        <span class="font-bold">{{module.name}}</span>
+                    </a>
+                    <!--folder-->
+                    <a href ng-if="module.children" class="auto">
+                        <span class="pull-right flip text-muted">
+                            <i class="fa fa-fw fa-angle-right flipped text"></i>
+                            <i class="fa fa-fw fa-angle-down text-active"></i>
+                        </span>
+                        <i class="{{module.icon || 'glyphicon glyphicon-map-marker'}} icon"></i>
+                        <span class="font-bold">{{module.name}}</span>
+                    </a>
+                    <ul ng-if="module.children" class="nav nav-sub dk">
+                        <li class="nav-sub-header">
+                            <a href>
+                                <span>{{module.name}}</span>
+                            </a>
+                        </li>
+                        <li class="leaf sub-child" ng-class="{'active':$state.includes(child.state)}" ng-repeat-start="child in module.children">
+                            <a ng-click="$state.go(child.state)">
+                                <span><i class="fa fa-fw fa-tag m-far-xs"></i>{{child.name}}</span>
+                            </a>
+                        </li>
+                        <li ng-repeat-end class="line lt" ng-if="child.separateAfter"></li>
+                    </ul>
+                </li>
+                <li ng-repeat-end class="line dk" ng-if="module.separateAfter"></li>
+            </ul>
+        </nav>
+        <!-- nav -->
+
+        <!-- shared menu -->
+        <!--<nav ui-nav class="navi">
+            <ul class="nav">
+                <li>
+                    <a ng-click="doMyAccount()">
+                        <i class="icon-user"></i>
+                        <span class="font-bold">My Account</span>
+                    </a>
+                </li>
+                <li class="line dk"></li>
+            </ul>
+        </nav>-->
+        <!-- end shared menu -->
+
+    </div>
+</div>

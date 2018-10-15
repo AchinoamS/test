@@ -1,0 +1,35 @@
+﻿<form name="form" id="form" class="form-validation" ng-class="{'form_submitted':form.submitAttempt}">
+    <div class="dvModalBodyContainer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="$dismiss()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title">
+                <span ng-if="member.id">{{'Edit' | translate}}</span>
+                <span ng-if="!member.id">{{'Add' | translate}}</span>
+                <span class="text-sm inline m-near">{{member.name}}</span>
+            </h3>
+        </div>
+
+        <div class="modal-body padder-sm padder-v">
+
+            <div class="form-group">
+                <label>{{'Name' | translate}}</label>
+                <input type="text" class="form-control" ng-model="member.name" name="fname" required ng-disabled="ui.formDisabled">
+            </div>
+
+            <div class="form-group">
+                <label>{{'English Name' | translate}}</label>
+                <input type="text" class="form-control" ng-model="member.name_eng" name="name_eng" required ng-disabled="ui.formDisabled">
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-danger w-xs pull-left flip" ng-click="delete()" ng-if="member.$$canDelete">{{'Delete' | translate}}</button>-->
+
+            <button type="button" class="btn btn-default w-xs" ng-click="$dismiss()">{{'Cancel' | translate}}</button>
+            <button type="submit" class="btn btn-primary w-xs" ng-click="form.submitAttempt=true;apply()">{{'Save' | translate}}</button>
+        </div>
+
+    </div>
+</form>
+
