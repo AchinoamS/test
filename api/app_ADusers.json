@@ -1,0 +1,52 @@
+﻿[
+  {
+    "value": "BellaS",
+    "text": "BellaS",
+    "id": "a8",
+    "firstName": "בלה",
+    "lastName": "שרעבי",
+    "name": "בלה שרעבי",
+    "nationalID": "555555555",
+    "phone": "0527654321",
+    "email": "BellaS@example.com",
+    "userType": 3,
+    "levelPurchaseType": 2
+  },
+  {
+    "value": "AchinoamS",
+    "text": "AchinoamS",
+    "id": "a11",
+    "firstName": "אחינועם",
+    "lastName": "שטרנליכט",
+    "name": "אחינועם שטרנליכט",
+    "nationalID": "258741369",
+    "phone": "0527654321",
+    "email": "AchinoamS@example.com"
+  },
+  {
+    "value": "MosheC",
+    "text": "MosheC",
+    "id": "a3",
+    "firstName": "משה",
+    "lastName": "כהן",
+    "name": "משה כהן",
+    "nationalID": "666666666",
+    "phone": "0527654321",
+    "email": "MosheC@example.com",
+    "userType": 3,
+    "levelPurchaseType": 1
+  },
+  {
+    "value": "YaelC",
+    "text": "YaelC",
+    "id": "a4",
+    "firstName": "יעל",
+    "lastName": "כהן",
+    "name": "יעל כהן",
+    "nationalID": "777777777",
+    "phone": "0527654321",
+    "email": "YaelC@example.com",
+    "userType": 3,
+    "levelPurchaseType": 3
+  }
+]

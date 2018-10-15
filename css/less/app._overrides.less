@@ -1,0 +1,137 @@
+﻿
+body.login{
+    
+}
+._login{
+    .app{
+        background:@brand-content url(../../img/bg.jpg) no-repeat center;
+        background-size:cover;
+    }
+    .container{
+        max-width: 500px;
+    }
+    .main-login{
+        margin: 30px 0 30px 0;
+
+
+        padding:25px 20px 15px 20px;
+ 	    background-color: #fff;
+        /* shadows and rounded borders */
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border:1px solid #ccc;
+        border-radius: 4px;
+        /*-moz-box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0px 2px 2px  0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 2px 2px  0px rgba(0, 0, 0, 0.2);*/
+
+        .btn-lg{
+            margin-top:10px;
+            height:55px;
+            font-size:18px;
+        }
+    }
+}
+
+/*
+    -----------------------------------------------------------------------------------------
+    start overrides
+    -----------------------------------------------------------------------------------------
+*/
+
+
+
+body {
+  overflow-x: hidden;
+  overflow-y:hidden
+}
+
+.app {
+  height: auto;
+  min-height: 100%;
+  width: auto;
+  position: static;
+  background:@brand-content;
+}
+
+.nav > li.active.leaf > a{
+    background:@brand-content;
+    color:@text-color;
+}
+
+.app-aside-folded.app-aside-fixed .app-aside.bg-dark .nav > li.active.leaf > a{                
+    background:rgba(0,0,0,0.5);
+    color:#ffffff;
+}
+
+
+.v-error{}
+.v-error label{color:#f05050}
+.form_submitted .form-control.ng-invalid,
+.form_submitted .ui-select-container.ng-invalid .form-control,
+.form-control.ng-invalid.ng-dirty {
+  border-color: #a7242a;
+}
+.ui-select-container.ng-valid.ng-dirty .form-control,
+.form-control.ng-valid.ng-dirty {
+  border-color: #207c2c;
+}
+ul.ul-valid {
+    padding:0;
+    margin:0 !important;
+    color:#a7242a;
+    font-size:12px;
+    li{list-style-type:none}
+}
+
+.text-label{font-size:12px;}
+
+
+
+.icon-preview {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    text-decoration: none;
+    font-size: @font-size-md;
+    border: 1px solid #ebecee;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 5px;
+    &.b-dk{
+        border-color:#ccc;
+    }
+    &.lg{
+        width:50px;
+    }
+}
+
+.n-lines-text {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   line-height: 18px;        /* fallback */
+   max-height: 36px;       /* fallback */
+}
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 100%;
+    max-width:1100px;
+  }
+}
+
+
+
+/*---------------------------------------------------------------------------------------*/
+
+.uiXS(@font-size-base);
+.uiSM(@font-size-base);

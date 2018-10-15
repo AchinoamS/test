@@ -1,0 +1,86 @@
+﻿{
+    "menu": [
+        {
+            "name": "",
+            "modules": [
+                {
+                    "name": "ניהול משתמשים",
+                    "state": "app.main.users",
+                    "icon": "fa fa-users"
+                },
+                {
+                    "name": "ניהול פורטל",
+                    "state": "app.main.portalGroups",
+                    "icon": "fa fa-server",
+                    "separateAfter": true
+                }
+            ]
+        }
+    ],
+    "user_types": [
+        {
+            "value": 1,
+            "text": "רכש"
+        },
+        {
+            "value": 2,
+            "text": "BI"
+        },
+        {
+            "value": 3,
+            "text": "הכל"
+        }
+    ],
+    "user_status": [
+        {
+            "value": true,
+            "text": "פעיל"
+        },
+        {
+            "value": false,
+            "text": "לא פעיל"
+        }
+    ],
+    "levelPurchaseTypes": [
+        {
+            "value": 0,
+            "text": "מזין הבקשה"
+        },
+        {
+            "value": 1,
+            "text": "מגיש בקשה"
+        },
+        {
+            "value": 2,
+            "text": "רפרנט רכש"
+        },
+        {
+            "value": 3,
+            "text": "רפרנט בינוי"
+        },
+        {
+            "value": 4,
+            "text": "רפרנט תקציבים"
+        },
+        {
+            "value": 5,
+            "text": "רפרנט הנהלת חשבונות"
+        },
+        {
+            "value": 9,
+            "text": "מנהל מחלקה - רכש"
+        },
+        {
+            "value": 8,
+            "text": "משתמש לצפייה"
+        },
+        {
+            "value": 10,
+            "text": "מנהל מחלקה - בינוי"
+        },
+        {
+            "value": 6,
+            "text": "מנכ\"ל"
+        }
+    ]
+}

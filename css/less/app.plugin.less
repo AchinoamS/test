@@ -1,0 +1,321 @@
+/*Charts*/
+.jqstooltip {
+    background-color: rgba(0,0,0,0.8) !important;
+    border: solid 1px #000 !important;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 5px 10px !important;
+    .box-sizing(content-box);
+}
+
+// easypie
+.easyPieChart {
+    position: relative;
+    text-align: center;
+
+    > div {
+        position: relative;
+        z-index: 1;
+
+        .text {
+            position: absolute;
+            width: 100%;
+            top: 60%;
+            line-height: 1;
+        }
+
+        img {
+            margin-top: -4px;
+        }
+    }
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
+}
+
+// flot tip
+#flotTip {
+    padding: 4px 10px;
+    background-color: rgba(0,0,0,0.8);
+    border: solid 1px #000 !important;
+    z-index: 100;
+    font-size: 12px;
+    color: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+// flot lengend
+.legendColorBox {
+    > div {
+        border: none !important;
+        margin: 5px;
+
+        > div {
+            border-radius: 10px;
+        }
+    }
+}
+
+// sortable
+.sortable-placeholder {
+    list-style: none;
+    border: 1px dashed #CCC;
+    min-height: 50px;
+    margin-bottom: 5px;
+}
+
+// ui select
+.ui-select-bootstrap {
+    &.ui-select-multiple {
+        padding: 5px 5px 1px 5px;
+    }
+
+    > .ui-select-choices {
+        width: auto;
+    }
+
+    > .ui-select-match > .btn .ui-select-match-text {
+        float: none !important;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    > .ui-select-match > .btn > span {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+    }
+}
+
+._rtl .ui-select-bootstrap {
+    .ui-select-toggle > .caret {
+        right: initial;
+        left: 10px;
+    }
+
+    > .ui-select-match > .btn {
+        text-align: right !important;
+        direction: rtl;
+    }
+}
+
+
+
+// ui datepicker
+.uib-datepicker-popup {
+    &.dropdown-menu {
+        padding-top: 0;
+        display: table;
+    }
+
+    .btn-default {
+        box-shadow: none;
+        border-radius: 0;
+        border-width: 0;
+
+        .text-info {
+            color: #fff;
+        }
+    }
+}
+
+
+//daterangepicker
+.daterangepicker {
+    .fa.fa-chevron-right:before {
+        content: "\f054";
+    }
+
+    .fa.fa-chevron-left:before {
+        content: "\f053";
+    }
+}
+
+
+
+
+
+// kendo
+
+.panel > .k-widget {
+    border-width: 0;
+}
+
+.k-grouping-row td, td.k-group-cell, .k-resize-handle-inner,
+.k-block, .k-header, .k-grid-header, .k-toolbar, .k-grouping-header, .k-pager-wrap, .k-draghandle, .k-treemap-tile .km-pane-wrapper .k-header {
+    background: #fafafa;
+}
+
+.k-alt, .k-separator, .k-resource.k-alt, .k-pivot-layout > tbody > tr:first-child > td:first-child {
+    background-color: #fcfcfc;
+}
+
+.k-state-selected, .k-state-selected:link, .k-state-selected:visited, .k-list > .k-state-selected, .k-list > .k-state-highlight, .k-panel > .k-state-selected, .k-ghost-splitbar-vertical, .k-ghost-splitbar-horizontal, .k-draghandle.k-state-selected:hover, .k-scheduler .k-scheduler-toolbar .k-state-selected, .k-scheduler .k-today.k-state-selected, .k-marquee-color {
+    background-color: #1984c8;
+    border-color: #1984c8;
+    color: #fff;
+
+    .text-primary {
+        color: #fff;
+    }
+}
+
+.k-grid-header th.k-header {
+    overflow: visible;
+    white-space: normal;
+    position: relative;
+}
+
+.k-header > .k-grid-filter, .k-header > .k-header-column-menu {
+    float: none;
+    position: absolute;
+    right: 0;
+    margin: 0;
+    bottom: 0;
+
+    > span {
+        text-align: center;
+        background-image: none;
+
+        &:before {
+            font: normal normal 14px/1 FontAwesome;
+            content: "\f142";
+            opacity: 0.8;
+        }
+    }
+}
+
+.k-grid-filter.k-state-active {
+    box-shadow: inset 1px 1px 1px rgba(0,0,0,0.2);
+    color: #1984c8;
+}
+
+
+
+.k-block, .k-button, .k-textbox, .k-drag-clue, .k-touch-scrollbar, .k-window, .k-window-titleless .k-window-content, .k-window-action, .k-inline-block, .k-grid .k-filter-options, .k-grouping-header .k-group-indicator, .k-autocomplete, .k-multiselect, .k-combobox, .k-dropdown, .k-dropdown-wrap, .k-datepicker, .k-timepicker, .k-colorpicker, .k-datetimepicker, .k-notification, .k-numerictextbox, .k-picker-wrap, .k-numeric-wrap, .k-colorpicker, .k-list-container, .k-calendar-container, .k-calendar td, .k-calendar .k-link, .k-treeview .k-in, .k-editor-inline, .k-tooltip, .k-tile, .k-slider-track, .k-slider-selection, .k-upload {
+    border-radius: 2px;
+}
+
+.gh-300 .k-grid-content {
+    max-height: 300px;
+}
+
+.k-grid > .k-detail-template {
+    display: none;
+}
+
+.k-detail-cell {
+    box-sizing: border-box;
+    border: 1px solid @brand-dk;
+    border-width: 1px 0px 1px 1px !important;
+    background-color: #fff;
+}
+
+.k-radio, input.k-checkbox {
+    width: 0;
+    opacity: 0;
+    width: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    overflow: hidden;
+}
+
+.k-rtl .k-grid-header .k-filterable .k-link {
+    padding: .5em .6em .4em .6em;
+}
+
+.k-header.k-grid-toolbar {
+    > .btn {
+        margin-right: 3px;
+    }
+}
+.k-pager-numbers.k-reset{
+    .k-current-page{
+        display:none
+    }
+}
+
+._rtl {
+    .k-detail-cell{
+	    border-width:1px 1px 1px 0 !important;
+    }
+    .k-header.k-grid-toolbar {
+        > .btn {
+            margin-left: auto;
+            margin-right: 3px;
+        }
+    }
+    .k-header > .k-grid-filter, .k-header > .k-header-column-menu {
+        right: auto;
+        left: 0;
+    }
+    .k-group.k-menu-group > li.k-item > .k-link > input {
+        float: right;
+        margin: 0 0 0 4px;
+    }
+
+
+    .k-grid-header th.k-header,
+    .k-filter-row th{
+        border-width:0 0 1px 1px;text-align:right
+    }
+    .k-filtercell>span{
+        padding-left:4.8em;
+        padding-right:0;
+    }
+    .k-filter-row .k-dropdown-operator{
+        right:auto;
+        left: 2.5em;
+    }
+    .k-filtercell>span>.k-button{
+        right:auto;
+        left: 0;
+    }
+    .k-list-container.k-popup.k-group.k-rtl{
+        overflow:hidden;
+        overflow-y:auto;
+    }
+    .k-filter-menu.k-popup.k-group{
+        input[type="radio"],
+        input[type="checkbox"]{
+            margin: 0 0 0 4px;
+            position: relative;
+            top: 2px;
+        }
+        .k-filter-selected-items{
+            display:none;
+        }
+    }
+
+
+}
+
+
+.dnd-s-list {
+}
+
+.dnd-s-list .dndDraggingSource {
+    display: none;
+}
+
+.dnd-s-list .dndPlaceholder {
+    background-color: #ddd;
+    display: block;
+    min-height: 61px;
+    border: 1px solid #e3e3e3;
+}
+
+.dnd-s-list > div.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}

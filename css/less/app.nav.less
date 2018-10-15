@@ -1,0 +1,314 @@
+.nav-sub{
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+	margin-left: -20px;
+	.transition(all .2s ease-in-out 0s);
+
+  .active &,
+  .app-aside-folded li:hover &,
+  .app-aside-folded li:focus &,
+  .app-aside-folded li:active &{
+  	opacity: 1;
+		margin-left: 0;
+		height: auto !important;
+		overflow: auto;
+  }
+}
+
+.nav-sub-header {
+	display: none !important;
+	a{
+		padding: floor((@app-aside-folded-nav-height - @line-height-computed)/2) 20px;
+        text-transform:uppercase;
+        font-size:@font-size-base + 1;
+	}
+}
+
+.navi {
+	ul.nav {
+		li {
+			display: block;
+			position: relative;
+			li {
+				a {
+					/*@app-aside-nav-height + 15px;*/
+                    padding:10px 10px 10px 13px;
+				}
+			}
+			a {
+				font-weight: normal;
+				text-transform: none;
+				display: block;
+				padding: 15px 20px;/*floor((@app-aside-nav-height - @line-height-computed)/2) 20px;*/
+				position: relative;
+                text-transform:uppercase;
+				.transition(background-color .2s ease-in-out 0s);
+				.badge,
+				.label {
+					font-size: 11px;
+					padding: 2px 5px;
+					margin-top: 2px;
+				}
+				> i {
+					position: relative;
+                    /*float: left;*/
+                    /*width: @app-aside-nav-height;*/
+                    margin: floor(-(@app-aside-nav-height - @line-height-computed)/2) -10px;
+                    /*margin-right: 5px;*/
+					overflow: hidden;
+					line-height: @app-aside-nav-height;
+					text-align: center;
+                    font-size:20px;
+                    width:24px;
+                    &.icon-image{
+	                    background-repeat:no-repeat;
+	                    background-position:center center;
+	                    background-size:contain;
+	                    width:30px;
+	                    height:40px;
+	                    /*margin-right: 8px;*/
+                    }
+					&:before {
+						position: relative;
+						z-index: 2;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.app-aside-folded{
+		.nav-sub-header{
+			display: block !important;
+			a{
+				padding: floor((@app-aside-folded-nav-height - @line-height-computed)/2) 20px !important;
+			}
+		}
+		.navi{
+			> ul {
+                margin-top:20px;
+				> li {
+					> a {
+						position: relative;
+						padding: 0;
+						text-align: center;
+						height: @app-aside-folded-nav-height;
+						border: none;
+						span {
+							display: none;
+							&.pull-right{
+								display: none !important;
+							}
+						}
+						i{
+							width: auto;
+							float: none;
+							display: block;
+							font-size: 16px;
+							margin: 0 12px;
+							line-height: @app-aside-folded-nav-height;
+							border: none !important;
+                            -webkit-transition: margin-top 0.2s;
+                                    transition: margin-top 0.2s;
+							b{
+								/*left: 0 !important;*/
+							}
+						}
+						.badge,
+						.label{
+							position: absolute;
+							/*right: 12px;*/
+							top: 8px;
+							z-index: 3;
+						}
+					}
+				}
+				ul{
+					height: 0 !important;
+					position: absolute;
+					/*left: 100%;*/
+					top: 0 !important;
+					z-index: 1050;
+					width: @app-aside-width;
+					.box-shadow(0 2px 6px rgba(0,0,0,0.1));
+				}
+			}
+			li {
+				li{
+					a{
+						/*padding-left: 20px !important;*/
+					}
+				}
+			}
+		}
+	}
+
+	.app-aside-folded.app-aside-fixed .app-aside{
+		> ul.nav {
+			&:before{
+				content:"";
+				width: @app-aside-folded-width;
+				height: @app-aside-folded-nav-height;
+				position: absolute;
+				/*left: -@app-aside-folded-width;*/
+				top: 0;
+			}
+			z-index: 1010;
+			opacity: 1;
+			height: auto;
+			overflow: visible;
+			overflow-y: auto;
+			display: block;
+			width: @app-aside-width + @app-aside-folded-width;
+			/*left: @app-aside-folded-width + 20;*/
+			position: fixed;
+			-webkit-overflow-scrolling: touch;
+			a{
+				padding-left:  20px !important;
+				padding-right: 20px !important;
+			}
+		}
+	}
+}
+
+._ltr{
+
+    .navi {
+	    ul.nav {
+		    li {
+			    li {
+				    a {
+                        padding:10px 10px 10px 13px;
+				    }
+			    }
+			    a {
+				    > i {
+                        float: left;
+                        margin-right: 5px;
+                        &.icon-image{
+	                        margin-right: 8px;
+                        }
+				    }
+			    }
+		    }
+	    }
+    }
+
+    @media (min-width: 768px) {
+	    .app-aside-folded{
+		    .navi{
+			    > ul {
+				    > li {
+					    > a {
+						    i{
+							    b{
+								    left: 0 !important;
+							    }
+						    }
+						    .badge,
+						    .label{
+							    right: 12px;
+						    }
+					    }
+				    }
+				    ul{
+					    left: 100%;
+				    }
+			    }
+			    li {
+				    li{
+					    a{
+						    padding-left: 20px !important;
+					    }
+				    }
+			    }
+		    }
+	    }
+
+	    .app-aside-folded.app-aside-fixed .app-aside{
+		    > ul.nav {
+			    &:before{
+				    left: -@app-aside-folded-width;
+			    }
+			    left: @app-aside-folded-width + 20;
+		    }
+	    }
+    }
+}
+._rtl{
+
+    .navi {
+	    ul.nav {
+		    li {
+			    li {
+				    a {
+                        padding:10px 18px 10px 10px;
+				    }
+			    }
+			    a {
+				    > i {
+                        float: right;
+                        margin-left: 5px;
+                        &.icon-image{
+	                        margin-left: 8px;
+                        }
+				    }
+			    }
+		    }
+	    }
+    }
+
+    @media (min-width: 768px) {
+	    .app-aside-folded{
+		    .navi{
+			    > ul {
+				    > li {
+					    > a {
+						    i{
+                                float: none;
+                                margin: 0 12px;
+							    b{
+								    right: 0 !important;
+							    }
+						    }
+
+						    .badge,
+						    .label{
+							    left: 12px;
+						    }
+					    }
+				    }
+				    ul{
+					    right: 100%;
+				    }
+			    }
+			    li {
+				    li{
+					    a{
+						    padding-right: 20px !important;
+					    }
+				    }
+			    }
+		    }
+	    }
+
+	    .app-aside-folded.app-aside-fixed .app-aside{
+		    > ul.nav {
+			    &:before{
+				    right: -@app-aside-folded-width;
+			    }
+			    right: @app-aside-folded-width;
+
+                .bg-dark .nav > li.active.leaf > a{
+                    background:rgba(0,0,0,0.5);
+                    color:#ffffff;
+                }
+
+
+		    }
+	    }
+    }
+}
